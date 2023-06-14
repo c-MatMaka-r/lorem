@@ -1,0 +1,22 @@
+#!/usr/bin/bash
+
+url=http://metaphorpsum.com
+
+msg_error_22() {
+	echo "Usage: loremipsum [paragraphs (p), sentences (s)] [integer]"
+	exit 22
+}
+
+# check passed args
+if [ $# -ne 2 ]; then
+	msg_error_22
+fi
+
+if [ "${1}" = "p" ]; then
+	curl -s ${url}/paragraphs/${2} && printf "\n"
+
+elif [ "${1}" = "s" ]; then
+	curl -s ${url}/sentences/${2} && printf "\n"
+else
+	msg_error_22
+fi
